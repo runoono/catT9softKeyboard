@@ -153,12 +153,11 @@ public class SoftKeyboard extends InputMethodService implements KeyboardView.OnK
         return super.onKeyDown(keyCode, event);
     }
 
-    /**
-     * Use this to monitor key events being delivered to the application.
-     * We get first crack at them, and can either resume them or let them
-     * continue to the app.
-     */
-    //TODO clean this up like keydown
+
+    private int lastKeyUp = -1;
+    private int lastKeyUpRep = 0;
+    private long lastKeyUpTime = 0l;
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) { //pkb key up
         Log.d(TAG, "onKeyUp: " + keyCode);
